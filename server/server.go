@@ -108,7 +108,7 @@ func (s *server) download(c *gin.Context) {
 	fileName := path.Clean(c.Param("filename"))
 
 	// 文件合法性校验
-	if !strings.ContainsRune(fileName, os.PathSeparator) {
+	if strings.ContainsRune(fileName, os.PathSeparator) {
 		s.notFound(c)
 		if s.opt.Debug {
 			log.Printf("detect path separator '%c' in filename", os.PathSeparator)
